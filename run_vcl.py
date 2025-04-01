@@ -20,9 +20,9 @@ run = wandb.init(
     config={
         "name": "Coreset-Free VCL",
         "init_loc_fn": "init_to_mean",
-        "init_scale": 0.0001,
-        "learning_rate": 0.0001,
-        "epochs": 100
+        "init_scale": init_scale,
+        "learning_rate": lr,
+        "epochs": epochs
     },
 )
 
