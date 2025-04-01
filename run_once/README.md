@@ -1,1 +1,0 @@
-These scripts were run exactly once to generate MNIST permutations and MLEs for weights. Their outputs are provided in this repo for repoducibility. Running these scripts again will produce new, different results.

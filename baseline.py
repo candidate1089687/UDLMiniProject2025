@@ -40,12 +40,15 @@ PermutedMNIST.to(device)
 perms = torch.load("perms.pt", weights_only=True)
 coreset = []
 # Training
-for i in range(2, 4):
+for i in range(4):
     # Train on current dataset plus coreset
     metagen = PermutedMNIST.metagenerator(perms[i], 256, one_hot=True)
     metagen_with_coreset = helper(metagen, coreset)
     for avg_loss in mle(model, metagen_with_coreset, KLDivLoss(reduction="batchmean"), lr=0.0001, epochs=100):
         run.log({"avg_loss": avg_loss})
+    # Save weights from first task for reuse by VCL later
+    if i == 0:
+        torch.save(model.state_dict(), "mle.pt")
     # Log average accuracy
     data = torch.cat(tuple(PermutedMNIST.test_data(perms[j]) for j in range(i+1)))
     labels = torch.cat(tuple(PermutedMNIST.test_labels() for j in range(i+1)))
