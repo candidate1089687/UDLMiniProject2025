@@ -16,7 +16,7 @@ init_loc_fn, init_scale, lr, epochs = init_to_mean, 0.0001, 0.0001, 100
 # Start a new wandb run to track this script
 run = wandb.init(
     entity=pii.ENTITY,
-    project="UDL Mega Project",
+    project="Candidate 1089687's UDL Mini Project 2025",
     config={
         "name": "Coreset-Free VCL",
         "init_loc_fn": "init_to_mean",
