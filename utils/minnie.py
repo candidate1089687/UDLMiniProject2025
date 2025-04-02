@@ -10,11 +10,11 @@ class PermutedMNIST():
     # Load and process the data and labels exactly once up front
     _transform = transforms.Compose([transforms.ToTensor()])
     _train_dataset = datasets.MNIST('./data', train=True, download=True, transform=_transform)
-    _train_data = _train_dataset.data.reshape(60000, 784).to(dtype=torch.float32)
+    _train_data = _train_dataset.data.reshape(60000, 784).to(dtype=torch.float32) / 255.0
     _train_labels = _train_dataset.targets
     _one_hot_train_labels = one_hot(_train_dataset.targets).to(dtype=torch.float32)
     _test_dataset = datasets.MNIST('./data', train=False, download=True, transform=_transform)
-    _test_data = _test_dataset.data.reshape(10000, 784).to(dtype=torch.float32)
+    _test_data = _test_dataset.data.reshape(10000, 784).to(dtype=torch.float32) / 255.0
     _test_labels = _test_dataset.targets
     _one_hot_test_labels = one_hot(_test_dataset.targets).to(dtype=torch.float32)
 
