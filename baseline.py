@@ -18,7 +18,7 @@ run = wandb.init(
     entity=pii.ENTITY,
     project="Candidate 1089687's UDL Mini Project 2025",
     config={
-        "name": "Baseline Method (Coreset Only)",
+        "name": "Baseline Method (Coreset Only) 11 April",
         "learning_rate": 0.0001,
         "epochs": 100,
     },
@@ -49,7 +49,7 @@ for i in range(4):
     data = torch.cat(tuple(PermutedMNIST.test_data(perms[j]) for j in range(i+1)))
     labels = torch.cat(tuple(PermutedMNIST.test_labels() for j in range(i+1)))
     preds = model(data)
-    run.log({"acc": multiclass_accuracy(preds, labels)})
+    run.log({"Average Accuracy": multiclass_accuracy(preds, labels)})
     # Add a random batch of the current dataset to the coreset
     coreset.append(next(metagen()))
 run.finish()
